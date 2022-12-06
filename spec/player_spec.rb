@@ -7,4 +7,14 @@ describe Player do
             player1 = Player.new('Koa')
         end
     end
+
+    it "checks if player's input is valid" do
+        player1 = Player.new('Koa')
+        player1.input = 'A'
+
+        expect(player1.valid_column?).to be(true)
+
+        player1.input = 'K'
+        expect(player1.valid_column?).to be(false)
+    end
 end
