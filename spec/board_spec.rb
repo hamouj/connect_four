@@ -16,7 +16,8 @@ describe Board do
         end
 
         it 'can tell us if the board is full' do
-            board = Board.new.create_board
+            board = Board.new
+            board.create_board
 
             expect(board.full?).to eq(false)
 

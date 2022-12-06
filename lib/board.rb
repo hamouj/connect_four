@@ -15,6 +15,7 @@ class Board
         row2 = @positions[7..13]
         row1 = @positions[0..6]
         all_rows = [row1, row2, row3, row4, row5, row6]
+        @positions
     end
 
     def full?
