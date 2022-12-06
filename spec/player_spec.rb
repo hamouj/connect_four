@@ -12,12 +12,12 @@ describe Player do
         player1 = Player.new('Koa')
         player1.input = 'A'
 
-        expect(player1.valid_column?).to be(true)
+        expect(player1.valid_input?).to be(true)
 
         player1.input = 'K'
-        expect(player1.valid_column?).to be(false)
+        expect(player1.valid_input?).to be(false)
 
         player1.input = 'A2'
-        expect(player1.valid_column?).to be(false)
+        expect(player1.valid_input?).to be(false)
     end
 end

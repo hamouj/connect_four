@@ -6,7 +6,7 @@ class Player
         @input = nil
     end
     
-    def valid_column?
+    def valid_input?
         valid_inputs = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
         if valid_inputs.include?(@input.upcase)
             true
