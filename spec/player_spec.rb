@@ -16,5 +16,8 @@ describe Player do
 
         player1.input = 'K'
         expect(player1.valid_column?).to be(false)
+
+        player1.input = 'A2'
+        expect(player1.valid_column?).to be(false)
     end
 end
