@@ -4,12 +4,20 @@ class Board
         @positions = []
     end
 
-    def board_positions
+    def create_board
         puts 'A B C D E F G'
         42.times do
             @positions << '.'
         end
         @positions
+    end
+
+    def full?
+        if @positions.include?('.')
+            false
+        else 
+            true
+        end
     end
 
 end
