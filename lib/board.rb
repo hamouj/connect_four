@@ -1,15 +1,15 @@
 class Board
+    attr_accessor :positions
     def initialize
-    
+        @positions = []
     end
 
     def board_positions
-        positions = []
         puts 'A B C D E F G'
         42.times do
-            positions << '.'
+            @positions << '.'
         end
-        positions
+        @positions
     end
-    
+
 end

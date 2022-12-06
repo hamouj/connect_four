@@ -15,8 +15,6 @@ describe Board do
             expect(board.board_positions.count).to eq(42)
         end
 
-        
-
     end
 
 end
