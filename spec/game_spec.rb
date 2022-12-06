@@ -8,4 +8,13 @@ describe Game do
             expect(game).to be_a(Game)
         end
     end
+
+    describe '#start'do
+        it 'prints a welcome message' do
+            game = Game.new
+            game.start
+            
+            expect(game.start).to eq("Welcome to Connect Four. Enter p to play. Enter q to quit.")
+        end
+    end
 end
