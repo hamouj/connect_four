@@ -1,22 +1,24 @@
 require './lib/board'
+require './lib/player'
+require './lib/computer'
 require 'rspec'
 
 describe Board do
+    let(:player) {Player.new('Koa')}
+    let(:board) {Board.new(player)}
+
     describe 'initialize' do
 
         it 'is an instance of Board' do
-            board = Board.new
             
             expect(board).to be_a(Board)
         end
 
         it '#board_positions' do
-            board = Board.new
             expect(board.create_board.keys.count).to eq(7)
         end
 
         it 'can tell us if the board is full' do
-            board = Board.new
             board.create_board
 
             expect(board.full?).to eq(false)
@@ -33,5 +35,5 @@ describe Board do
             
             expect(board.full?).to eq(true)
         end
-
+    end
 end
