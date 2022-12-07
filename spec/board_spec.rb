@@ -15,6 +15,7 @@ describe Board do
         end
 
         it '#board_positions' do
+        
             expect(board.create_board.keys.count).to eq(7)
         end
 
