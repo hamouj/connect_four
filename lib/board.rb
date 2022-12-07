@@ -5,6 +5,7 @@ class Board
     def initialize(player)
         @computer = Computer.new
         @player = player
+        @rows = []
     end
 
     def create_board
@@ -29,14 +30,19 @@ class Board
     end
 
     def print_board
+        # Board prints in rows, so created an array of rows in the proccess
         puts "A B C D E F G"
         counter = 0
         6.times do
+            row = []
             board.each do |key, value|
                 print "#{value[counter]} "
+                row << "#{value[counter]}"
             end
             puts "\n"
             counter += 1
+        @rows << row
+        counter += 1
         end
     end
 
