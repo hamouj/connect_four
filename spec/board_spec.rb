@@ -12,7 +12,7 @@ describe Board do
 
         it '#board_positions' do
             board = Board.new
-            expect(board.create_board.count).to eq(42)
+            expect(board.create_board.keys.count).to eq(7)
         end
 
         it 'can tell us if the board is full' do
