@@ -21,17 +21,26 @@ describe Board do
 
             expect(board.full?).to eq(false)
 
-            board.board_columns = {
-                'A' => ['X', 'O', 'O', 'O', 'O', 'O'],
-                'B' => ['O', 'O', 'O', 'O', 'O', 'O'],
-                'C' => ['X', 'X', 'X', 'X', 'X', 'X'],
-                'D' => ['X', 'X', 'X', 'X', 'X', 'X'],
-                'E' => ['X', 'X', 'X', 'X', 'X', 'X'],
-                'F' => ['X', 'X', 'X', 'X', 'X', 'X'],
-                'G' => ['X', 'X', 'X', 'X', 'X', 'X']
+            board.board = {
+                'A' => ['A', 'O', 'O', 'O', 'O', 'O'],
+                'B' => ['B', 'O', 'O', 'O', 'O', 'O'],
+                'C' => ['C', 'X', 'X', 'X', 'X', 'X'],
+                'D' => ['D', 'X', 'X', 'X', 'X', 'X'],
+                'E' => ['E', 'X', 'X', 'X', 'X', 'X'],
+                'F' => ['F', 'X', 'X', 'X', 'X', 'X'],
+                'G' => ['G', 'X', 'X', 'X', 'X', 'X']
             }
             
             expect(board.full?).to eq(true)
+        end
+
+        it '#print_board' do
+            board = Board.new
+            board.create_board
+
+            board.print_board
+
+            expect(board.print_board).to eq('')
         end
     end
 
