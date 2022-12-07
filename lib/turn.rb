@@ -1,45 +1,20 @@
 class Turn
-    attr_reader :board, :player
-    def initialize (player)
-        @board = board
+    attr_reader :player, :computer, :board
+    def initialize (player, board)
         @player = player
+        @computer = computer
+        @board = board
     end
-
+    
     def valid_move?(input)
-        if input == 'A'
-            board['A'].any? do |column|
-                column.include?('.')
-                'Invalid move' if false
-            end 
-        elsif input == 'B'
-            board['B'].any? do |column|
-                column.include?('.')
-                'Invalid move' if false
-            end 
-        elsif input == 'C'
-            board['C'].any? do |column|
-                column.include?('.')
-                'Invalid move' if false
-            end 
-        elsif input == 'D'
-            board['D'].any? do |column|
-                column.include?('.')
-                'Invalid move' if false
-            end 
-        elsif input == 'E'
-            board['E'].any? do |column|
-                column.include?('.')
-                'Invalid move' if false
-            end 
-        elsif input == 'F'
-            board.all_columns[5].any? do |column|
-                column.include?('.')
-                'Invalid move' if false
-            end 
-        elsif input == 'G'
-            board.all_columns[6].any? do |column|
-                column.include?('.')                
-                'Invalid move' if false
-            end 
-    end
+        column_space = board[input].any? do |column|
+            column.include? ('.')
+        end 
+            
+            if column_space == false
+                'That column is full. Choose a different column.'
+            else
+                'You are good to go!'
+            end     
+    end 
 end
