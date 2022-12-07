@@ -1,8 +1,10 @@
 class Board
     attr_accessor :board
+    attr_reader :computer, :player
 
-    def initialize
-        @board_columns = []
+    def initialize(player)
+        @computer = Computer.new
+        @player = player
     end
 
     def create_board
