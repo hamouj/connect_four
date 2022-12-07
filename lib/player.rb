@@ -1,9 +1,10 @@
 class Player
-    attr_reader :name
+    attr_reader :name, :piece
     attr_accessor :input
     def initialize(name)
         @name = name
         @input = nil
+        @piece = 'X'
     end
     
     def valid_input?
