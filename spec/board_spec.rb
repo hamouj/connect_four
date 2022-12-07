@@ -37,6 +37,14 @@ describe Board do
             expect(board.full?).to eq(true)
         end
 
+        it 'creates rows during #print_board' do
+            board.create_board
+            board.print_board
+
+            expect(board.rows).to eq([[".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."]])
+        end
+
+
         xit 'checks for #winner at a row' do
             board.create_board
 

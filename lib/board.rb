@@ -1,6 +1,6 @@
 class Board
     attr_accessor :board
-    attr_reader :computer, :player
+    attr_reader :computer, :player, :rows
 
     def initialize(player)
         @computer = Computer.new
@@ -42,7 +42,6 @@ class Board
             puts "\n"
             counter += 1
         @rows << row
-        counter += 1
         end
     end
 
