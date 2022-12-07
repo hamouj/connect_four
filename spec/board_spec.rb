@@ -12,7 +12,7 @@ describe Board do
 
         it '#board_positions' do
             board = Board.new
-            expect(board.create_board.count).to eq(42)
+            expect(board.create_board.keys.count).to eq(7)
         end
 
         it 'can tell us if the board is full' do
@@ -21,10 +21,17 @@ describe Board do
 
             expect(board.full?).to eq(false)
 
-            board.positions.map! {|position| position = 'X'}
+            board.board = {
+                'A' => ['A', 'O', 'O', 'O', 'O', 'O'],
+                'B' => ['B', 'O', 'O', 'O', 'O', 'O'],
+                'C' => ['C', 'X', 'X', 'X', 'X', 'X'],
+                'D' => ['D', 'X', 'X', 'X', 'X', 'X'],
+                'E' => ['E', 'X', 'X', 'X', 'X', 'X'],
+                'F' => ['F', 'X', 'X', 'X', 'X', 'X'],
+                'G' => ['G', 'X', 'X', 'X', 'X', 'X']
+            }
             
             expect(board.full?).to eq(true)
         end
-    end
 
 end
