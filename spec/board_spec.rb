@@ -21,7 +21,15 @@ describe Board do
 
             expect(board.full?).to eq(false)
 
-            board.positions.map! {|position| position = 'X'}
+            board.board_columns = {
+                'A' => ['X', 'O', 'O', 'O', 'O', 'O'],
+                'B' => ['O', 'O', 'O', 'O', 'O', 'O'],
+                'C' => ['X', 'X', 'X', 'X', 'X', 'X'],
+                'D' => ['X', 'X', 'X', 'X', 'X', 'X'],
+                'E' => ['X', 'X', 'X', 'X', 'X', 'X'],
+                'F' => ['X', 'X', 'X', 'X', 'X', 'X'],
+                'G' => ['X', 'X', 'X', 'X', 'X', 'X']
+            }
             
             expect(board.full?).to eq(true)
         end

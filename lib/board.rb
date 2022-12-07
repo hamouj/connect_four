@@ -1,11 +1,12 @@
 class Board
-    attr_accessor :positions
+    attr_accessor :board_columns
+    
     def initialize
-        @positions = []
+        @board_columns = []
     end
 
     def create_board
-        @positions = {
+        @board_columns = {
             'A' => ['.', '.', '.', '.', '.', '.'],
             'B' => ['.', '.', '.', '.', '.', '.'],
             'C' => ['.', '.', '.', '.', '.', '.'],
@@ -17,11 +18,15 @@ class Board
     end
 
     def full?
-        if @positions.include?('.')
-            false
-        else 
-            true
+        full = false
+        for column in @board_columns.values
+            if full == true
+                break
+            else
+                full = column.none? {|n| '.' == n}
+            end
         end
+        return full
     end
 
     def print_board
