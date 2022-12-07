@@ -34,14 +34,4 @@ describe Board do
             expect(board.full?).to eq(true)
         end
 
-        it '#print_board' do
-            board = Board.new
-            board.create_board
-
-            board.print_board
-
-            expect(board.print_board).to eq('')
-        end
-    end
-
 end
