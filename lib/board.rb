@@ -51,7 +51,6 @@ class Board
         winner_array_checks = []
         until n == 6
             4.times do
-                # require 'pry'; binding.pry
                 winner_array_checks << @rows[n].last(4)
                 @rows[n].pop
             end
@@ -59,7 +58,28 @@ class Board
         end
 
         winner_array_checks.each do |array|
-            # require 'pry'; binding.pry
+            if array == ['X', 'X', 'X', 'X']
+                winner = player
+                break
+            elsif array == ["O", "O", "O", "O"]
+                winner = computer
+                break
+            end
+        end
+        return winner
+    end
+
+    def column_winner_check
+        winner = 'No Winner Yet!'
+        winner_array_checks = []
+        @board.each do |key, value|
+            3.times do
+                winner_array_checks << value.last(4)
+                value.pop
+            end
+        end
+
+        winner_array_checks.each do |array|
             if array == ['X', 'X', 'X', 'X']
                 winner = player
                 break

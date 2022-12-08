@@ -78,7 +78,7 @@ describe Board do
             expect(board.winner).to be(player)
         end
 
-        xit 'checks for #winner at a column' do
+        it 'checks for #winner at a column' do
             board.create_board
 
             board.board = {
@@ -91,7 +91,9 @@ describe Board do
                 'G' => ['.', '.', '.', '.', '.', '.']
             }
 
-            expect(board.winner).to be(player)
+            board.print_board
+
+            expect(board.column_winner_check).to be(player)
         end
     end
 end
