@@ -84,6 +84,38 @@ class Board
         return winner
     end
 
+    def diagonal_arrays(array)
+        i = 0
+        n = 3
+        temp = []
+        until n == 6
+            temp << (i..n).collect {|i| array[i][i]}
+            temp << (i..n).collect {|i| array[i+1][i]}
+            temp << (i..n).collect {|i| array[i][i+1]}
+            i += 1
+            n += 1
+        end
+    
+        i = 0
+        n = 1
+        temp << (i..3).collect {|i| array[i][n+=1]}
+    
+        i = 0
+        n = 3
+        2.times do
+            temp << (i..n).collect {|i| array[i+2][i]}
+            i += 1
+            n += 1
+        end
+    
+        i = 0
+        n = -1
+        temp << (i..3).collect {|i| array[i+3][n+=1]}
+    
+        temp.delete_if {|n| n.include?(nil)}
+        return temp
+    end
+
     def winner
         column_winner_check
         row_winner_check
