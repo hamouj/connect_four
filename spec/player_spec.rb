@@ -21,10 +21,10 @@ describe Player do
             expect(player1.valid_input?).to be(true)
 
             player1.input = 'K'
-            expect(player1.valid_input?).to be(false)
+            expect(player1.valid_input?).to include('Type the letter of the column you would like to play (A-G).')
 
             player1.input = 'A2'
-            expect(player1.valid_input?).to be(false)
+            expect(player1.valid_input?).to include('Type the letter of the column you would like to play (A-G).')
         end
     end
 end

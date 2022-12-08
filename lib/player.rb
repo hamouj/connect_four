@@ -1,6 +1,6 @@
 class Player
-    attr_reader :name, :piece
-    attr_accessor :input
+    attr_reader :piece
+    attr_accessor :input, :name
     def initialize(name)
         @name = name
         @input = nil
@@ -12,7 +12,8 @@ class Player
         if valid_inputs.include?(@input.upcase)
             true
         else
-            false
+            p 'Typo? It happens to the best of us!'
+            p 'Type the letter of the column you would like to play (A-G).'
         end
     end
 end
