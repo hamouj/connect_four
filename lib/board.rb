@@ -70,6 +70,14 @@ class Board
         check_array_for_winner(winner_array_checks)
     end
 
+    def diagonal_winner_check
+        winner_array_checks = []
+        reverse_diagonals = @board.map {|key, value| value.reverse}
+        winner_array_checks.concat(diagonal_arrays(@board.values))
+        winner_array_checks.concat(diagonal_arrays(reverse_diagonals))
+        check_array_for_winner(winner_array_checks)
+    end
+
     def check_array_for_winner(array)
         winner = 'No Winner Yet'
         array.each do |array|

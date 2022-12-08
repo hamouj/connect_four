@@ -61,7 +61,7 @@ describe Board do
             expect(board.row_winner_check).to eq(player)
         end
 
-        xit 'checks for #winner at a diagonal' do
+        it 'checks for #winner at a diagonal' do
             board.create_board
 
             board.board = {
