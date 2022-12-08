@@ -45,4 +45,29 @@ class Board
         end
     end
 
+    def row_winner_check
+        n = 0
+        winner = 'No Winner Yet!'
+        winner_array_checks = []
+        until n == 6
+            4.times do
+                # require 'pry'; binding.pry
+                winner_array_checks << @rows[n].last(4)
+                @rows[n].pop
+            end
+            n += 1
+        end
+
+        winner_array_checks.each do |array|
+            # require 'pry'; binding.pry
+            if array == ['X', 'X', 'X', 'X']
+                winner = player
+                break
+            elsif array == ["O", "O", "O", "O"]
+                winner = computer
+                break
+            end
+        end
+        return winner
+    end
 end
