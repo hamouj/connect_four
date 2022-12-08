@@ -83,4 +83,9 @@ class Board
         end
         return winner
     end
+
+    def winner
+        column_winner_check
+        row_winner_check
+    end
 end
