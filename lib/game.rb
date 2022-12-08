@@ -21,7 +21,12 @@ class Game
     end
 
     def instructions
-        p "Lets play! You will be assigned the piece 'X'. Good luck!"
+        puts "------------------------------------------------------"
+        p "Lets play! First, what is your name?"
+        player.name = gets.strip
+        puts "------------------------------------------------------"
+        p "#{player.name}, you will be assigned the piece 'X'. Good luck!"
+        puts "------------------------------------------------------"
         board.create_board
         play_game
     end
@@ -35,10 +40,12 @@ class Game
         end
         input = player.input.upcase
         turn.player_valid_move?(input)
-
+        puts "------------------------------------------------------"
+        p "Computer's move"
         board.computer.give_input
         input = board.computer.input
         turn.computer_valid_move?(input)
+        end
     end
 
 end 
