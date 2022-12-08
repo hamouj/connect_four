@@ -47,7 +47,6 @@ class Board
 
     def row_winner_check
         n = 0
-        winner = 'No Winner Yet!'
         winner_array_checks = []
         until n == 6
             4.times do
@@ -57,20 +56,10 @@ class Board
             n += 1
         end
 
-        winner_array_checks.each do |array|
-            if array == ['X', 'X', 'X', 'X']
-                winner = player
-                break
-            elsif array == ["O", "O", "O", "O"]
-                winner = computer
-                break
-            end
-        end
-        return winner
+        check_array_for_winner(winner_array_checks)
     end
 
     def column_winner_check
-        winner = 'No Winner Yet!'
         winner_array_checks = []
         @board.each do |key, value|
             3.times do
@@ -78,8 +67,12 @@ class Board
                 value.pop
             end
         end
+        check_array_for_winner(winner_array_checks)
+    end
 
-        winner_array_checks.each do |array|
+    def check_array_for_winner(array)
+        winner = 'No Winner Yet'
+        array.each do |array|
             if array == ['X', 'X', 'X', 'X']
                 winner = player
                 break

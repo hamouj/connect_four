@@ -44,7 +44,6 @@ describe Board do
             expect(board.rows).to eq([[".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", "."]])
         end
 
-
         it 'checks for #winner at a row' do
             board.create_board
             board.board = {
@@ -75,7 +74,9 @@ describe Board do
                 'G' => ['.', '.', '.', '.', '.', '.']
             }
 
-            expect(board.winner).to be(player)
+            board.print_board
+
+            expect(board.diagonal_winner_check).to eq(player)
         end
 
         it 'checks for #winner at a column' do
