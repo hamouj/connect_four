@@ -12,7 +12,8 @@ class Player
         if valid_inputs.include?(@input.upcase)
             true
         else
-            false
+            p 'Typo? It happens to the best of us!'
+            p 'Type the letter of the column you would like to play (A-G).'
         end
     end
 end
