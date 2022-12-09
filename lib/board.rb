@@ -59,29 +59,6 @@ class Board
         check_array_for_winner(winner_array_checks)
     end
 
-    def diagonal_winner_check
-        winner_array_checks = []
-        temp_board = @board.dup
-        reverse_diagonals = temp_board.map {|key, value| value.reverse}
-        winner_array_checks.concat(diagonal_arrays(temp_board.values))
-        winner_array_checks.concat(diagonal_arrays(reverse_diagonals))
-        check_array_for_winner(winner_array_checks)
-    end
-
-    def check_array_for_winner(array)
-        winner = nil
-        array.each do |array|
-            if array == ['X', 'X', 'X', 'X']
-                winner = player
-                break
-            elsif array == ["O", "O", "O", "O"]
-                winner = computer
-                break
-            end
-        end
-        return winner
-    end
-
     def diagonal_arrays(array)
         i = 0
         n = 3
@@ -112,6 +89,29 @@ class Board
     
         temp.delete_if {|n| n.include?(nil)}
         return temp
+    end
+
+    def diagonal_winner_check
+        winner_array_checks = []
+        temp_board = @board.dup
+        reverse_diagonals = temp_board.map {|key, value| value.reverse}
+        winner_array_checks.concat(diagonal_arrays(temp_board.values))
+        winner_array_checks.concat(diagonal_arrays(reverse_diagonals))
+        check_array_for_winner(winner_array_checks)
+    end
+
+    def check_array_for_winner(array)
+        winner = nil
+        array.each do |array|
+            if array == ['X', 'X', 'X', 'X']
+                winner = player
+                break
+            elsif array == ["O", "O", "O", "O"]
+                winner = computer
+                break
+            end
+        end
+        return winner
     end
 
     def winner
