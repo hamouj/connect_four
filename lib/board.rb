@@ -48,14 +48,7 @@ class Board
     def row_winner_check
         n = 0
         winner_array_checks = []
-        temp_rows = @rows.dup
-        until n == 6
-            4.times do
-                winner_array_checks << temp_rows[n].last(4)
-                temp_rows[n].pop
-            end
-            n += 1
-        end
+        @rows.map {|n| n.each_cons(4) {|element| winner_array_checks.push(element)}}
 
         check_array_for_winner(winner_array_checks)
     end
