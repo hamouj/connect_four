@@ -80,12 +80,14 @@ class Board
 			i += 1
 			n += 1
 		end
+		@temp_array
 	end
 
 	def diagonal_arrays_set_two(array)
 		i = 0
 		n = 1
 		@temp_array << (i..3).collect {|i| array[i][n+=1]}
+		# require 'pry'; binding.pry
 	end
 
 	def diagonal_arrays_set_three(array)
@@ -96,6 +98,7 @@ class Board
 			i += 1
 			n += 1
 		end
+		@temp_array
 	end
 
 	def diagonal_arrays_set_four(array)
@@ -104,13 +107,16 @@ class Board
 		@temp_array << (i..3).collect {|i| array[i+3][n+=1]}
 	end
 
+	def reversed_board_columns
+		temp_board = @board.dup
+		reverse_board = temp_board.map {|key, value| value.reverse}
+	end
 
 	def diagonal_winner_check
 		winner_array_checks = []
 		temp_board = @board.dup
-		reverse_diagonals = temp_board.map {|key, value| value.reverse}
 		winner_array_checks.concat(diagonal_arrays(temp_board.values))
-		winner_array_checks.concat(diagonal_arrays(reverse_diagonals))
+		winner_array_checks.concat(diagonal_arrays(reversed_board_columns))
 		check_array_for_winner(winner_array_checks)
 	end
 
