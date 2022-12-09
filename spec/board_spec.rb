@@ -4,8 +4,10 @@ require './lib/computer'
 require 'rspec'
 
 describe Board do
+    let(:computer) {Computer.new}
     let(:player) {Player.new('Koa')}
-    let(:board) {Board.new(player)}
+    let(:board) {Board.new(player, computer)}
+
 
     describe 'initialize' do
 
@@ -112,6 +114,40 @@ describe Board do
 
             board.print_board
             expect(board.diagonal_arrays(board.board.values)).to eq([["1a", "2b", "3c", "4d"], ["1b", "2c", "3d", "4e"], ["2a", "3b", "4c", "5d"], ["2b", "3c", "4d", "5e"], ["2c", "3d", "4e", "5f"], ["3b", "4c", "5d", "6e"], ["3c", "4d", "5e", "6f"], ["3d", "4e", "5f", "6g"], ["3a", "4b", "5c", "6d"], ["1c", "2d", "3e", "4f"], ["2d", "3e", "4f", "5g"], ["1d", "2e", "3f", "4g"]])
+        end
+
+        it 'has a player #winner' do
+            board.create_board
+
+            board.board = {
+                'A' => ['.', '.', '.', '.', '.', 'X'],
+                'B' => ['.', '.', '.', '.', 'X', 'O'],
+                'C' => ['.', 'X', 'X', 'X', 'X', 'O'],
+                'D' => ['.', '.', '.', '.', 'O', 'X'],
+                'E' => ['.', '.', '.', '.', 'O', 'O'],
+                'F' => ['.', '.', '.', '.', '.', '.'],
+                'G' => ['.', '.', '.', '.', '.', '.']
+            }
+
+            board.print_board
+            expect(board.winner).to eq(player)
+        end
+
+        it 'has a computer #winner' do
+            board.create_board
+
+            board.board = {
+                'A' => ['.', '.', '.', '.', '.', 'X'],
+                'B' => ['.', '.', '.', '.', 'O', 'O'],
+                'C' => ['.', 'X', 'X', 'X', 'O', 'O'],
+                'D' => ['.', '.', '.', '.', 'O', 'X'],
+                'E' => ['.', '.', '.', '.', 'O', 'O'],
+                'F' => ['.', '.', '.', '.', '.', '.'],
+                'G' => ['.', '.', '.', '.', '.', '.']
+            }
+
+            board.print_board
+            expect(board.winner).to eq(computer)
         end
     end
 end
