@@ -62,7 +62,7 @@ class Game
         play_again?
     end 
 
-    def play_again?
+    def play_again
         p "Would you like to play again? Type 'yes' or 'no'."
         answer = 'j'
         until answer.downcase == 'yes' || answer.downcase == 'no' 
