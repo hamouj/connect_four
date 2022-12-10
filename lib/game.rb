@@ -5,25 +5,29 @@ class Game
     @board = Board.new(@player, @computer)
     @turn = Turn.new(@board)
   end
-    
+
+  def start_message
+    begin_game = gets.strip
+    if begin_game.downcase == 'p'
+      puts "------------------------------------------------------"
+      p "Lets play! First, what is your name?"
+      @player.name = gets.strip
+      puts "------------------------------------------------------"
+      instructions
+    elsif begin_game.downcase == 'q'
+      p "Hope to see you soon--bye!"
+      exit
+    else
+      p "Didn't catch that. If you want to play, type 'p', otherwise type 'q'."
+    end 
+  end
+
   def start
     p 'Welcome to Connect Four.'
     p 'Enter p to play. Enter q to quit.'
     begin_game = 'j'
     until begin_game.downcase == 'p' || begin_game.downcase == 'q'
-      begin_game = gets.strip
-      if begin_game.downcase == 'p'
-        puts "------------------------------------------------------"
-        p "Lets play! First, what is your name?"
-        @player.name = gets.strip
-        puts "------------------------------------------------------"
-        instructions
-      elsif begin_game.downcase == 'q'
-        p "Hope to see you soon--bye!"
-        exit
-      else
-        p "Didn't catch that. If you want to play, type 'p', otherwise type 'q'."
-      end 
+      start_message
     end 
   end
 
@@ -37,7 +41,7 @@ class Game
   def play_game
     until @board.winner == @computer || @board.winner == @player || @board.full? == true
       p 'Choose a column (A-G). Type the letter.'
-      @board.print_board
+      @board.show_board
       @player.input = gets.strip
       until @player.valid_input? == true
         @player.input = gets.strip
