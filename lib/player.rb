@@ -14,6 +14,7 @@ class Player
 			true
 		elsif @input.upcase == 'EXIT'
 			p 'See you later!'
+			exit
 		else
 			p 'Typo? It happens to the best of us!'
 			p 'Type the letter of the column you would like to play (A-G).'
