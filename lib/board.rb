@@ -87,7 +87,6 @@ class Board
 		i = 0
 		n = 1
 		@temp_array << (i..3).collect {|i| array[i][n+=1]}
-		# require 'pry'; binding.pry
 	end
 
 	def diagonal_arrays_set_three(array)
