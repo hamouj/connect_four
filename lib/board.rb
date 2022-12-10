@@ -10,6 +10,7 @@ class Board
 	end
 
 	def create_board
+		@rows = []
 		@board = {
 			'A' => ['.', '.', '.', '.', '.', '.'],
 			'B' => ['.', '.', '.', '.', '.', '.'],
