@@ -52,7 +52,7 @@ describe Board do
 				'G' => ['G', 'X', 'X', 'X', 'X', 'X']
 			}
 
-			board.print_board
+			board.show_board
 
 			expect(board.rows[0]).to eq(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
 			expect(board.rows[5]).to eq(['O', 'O', 'X', 'X', 'X', 'X', 'X'])
@@ -75,7 +75,7 @@ describe Board do
 				'G' => ['.', '.', '.', '.', '.', 'O']
 			}
 
-			board.print_board
+			board.show_board
 
 			expect(board.row_winner_check).to eq(player)
 		end
@@ -95,7 +95,7 @@ describe Board do
 				'G' => ['.', '.', '.', '.', '.', '.']
 			}
 
-			board.print_board
+			board.show_board
 
 			expect(board.column_winner_check).to be(player)
 		end
@@ -113,7 +113,7 @@ describe Board do
 				'G' => ['1g', '2g', '3g', '4g', '5g', '6g']
 			}
 
-			board.print_board
+			board.show_board
 			#	This returns 8 possible diagonals in sets of 4 from the board plus 1 diagonal that includes nil
 			# nil diagonal is later removed in #diagonal_arrays
 			expect(board.diagonal_arrays_set_one(board.board.values).count).to eq(9)
@@ -134,7 +134,7 @@ describe Board do
 				'G' => ['1g', '2g', '3g', '4g', '5g', '6g']
 			}
 
-			board.print_board
+			board.show_board
 			#	This returns one diagonal array of 4 elements
 			expect(board.diagonal_arrays_set_two(board.board.values)).to eq([["3a", "4b", "5c", "6d"]])
 		end
@@ -152,7 +152,7 @@ describe Board do
 				'G' => ['1g', '2g', '3g', '4g', '5g', '6g']
 			}
 
-			board.print_board
+			board.show_board
 			#	This returns two diagonal arrays in sets of 4
 			expect(board.diagonal_arrays_set_three(board.board.values)).to eq([["1c", "2d", "3e", "4f"], ["2d", "3e", "4f", "5g"]])
 		end
@@ -170,7 +170,7 @@ describe Board do
 				'G' => ['1g', '2g', '3g', '4g', '5g', '6g']
 			}
 
-			board.print_board
+			board.show_board
 			#	This returns two diagonal arrays in sets of 4
 			expect(board.diagonal_arrays_set_four(board.board.values)).to eq([["1d", "2e", "3f", "4g"]])
 		end
@@ -189,7 +189,7 @@ describe Board do
 				'G' => ['1g', '2g', '3g', '4g', '5g', '6g']
 			}
 
-			board.print_board
+			board.show_board
 			# There are 12 possible diagonal wins going one way on the board,
 			# this combines previous three methods
 			expect(board.diagonal_arrays(board.board.values).count).to eq(12)
@@ -210,7 +210,7 @@ describe Board do
 				'G' => ['1g', '2g', '3g', '4g', '5g', '6g']
 			}
 
-			board.print_board
+			board.show_board
 			# This sets us up to find the backward 12 possible diagonal wins
 			expect(board.reversed_board_columns).to include(['6a', '5a', '4a', '3a', '2a', '1a'])
 			expect(board.reversed_board_columns).to include(['6g', '5g', '4g', '3g', '2g', '1g'])
@@ -232,7 +232,7 @@ describe Board do
 				'G' => ['.', '.', '.', '.', '.', '.']
 			}
 
-			board.print_board
+			board.show_board
 
 			expect(board.diagonal_winner_check).to eq(player)
 		end
@@ -250,7 +250,7 @@ describe Board do
 				'G' => ['.', '.', '.', '.', '.', '.']
 			}
 
-			board.print_board
+			board.show_board
 			expect(board.winner).to eq(player)
 		end
 
@@ -267,7 +267,7 @@ describe Board do
 				'G' => ['.', '.', '.', '.', '.', '.']
 			}
 
-			board.print_board
+			board.show_board
 			expect(board.winner).to eq(computer)
 		end
 	end

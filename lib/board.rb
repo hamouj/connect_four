@@ -31,7 +31,7 @@ class Board
 		end
 	end
 
-	def print_board
+	def show_board
 		# Board prints in rows, so created an array of rows in the proccess
 		puts "A B C D E F G"
 		counter = 0
