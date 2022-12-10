@@ -20,10 +20,17 @@ describe Player do
 			expect(player1.valid_input?).to be(true)
 
 			player1.input = 'K'
-			expect(player1.valid_input?).to be(false)
+			expect(player1.valid_input?).to include('Type the letter of the column you would like to play (A-G).')
 
 			player1.input = 'A2'
-			expect(player1.valid_input?).to be(false)
+			expect(player1.valid_input?).to include('Type the letter of the column you would like to play (A-G).')
+		end
+		
+		it 'exits game when player types exit' do
+			player1 = Player.new('Koa')
+			player1.input = 'exit'
+
+			expect(player1.valid_input?).to be('See you later!')
 		end
 	end
 end
