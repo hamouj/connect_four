@@ -57,7 +57,9 @@ describe Board do
 			expect(board.rows[0]).to eq(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
 			expect(board.rows[5]).to eq(['O', 'O', 'X', 'X', 'X', 'X', 'X'])
 		end
+	end
 
+	describe 'Checks for Winners' do
 		it 'checks for #winner at a row' do
 			board.create_board
 
