@@ -32,12 +32,13 @@ class Game
 
   def get_player_name
     p "Lets play! First, what is your name?"
-      @player.name = gets.strip
-      puts "------------------------------------------------------"
+    @player.name = gets.strip
+    puts "------------------------------------------------------"
   end
 
   def instructions
-    p "#{@player.name}, you will be assigned the piece 'X'. Good luck!"
+    p "#{@player.name}, you will be assigned the piece 'X'."
+    p "At any point in time, type 'exit' to exit the game. Good luck!"
     puts "------------------------------------------------------"
     @board.create_board
     play_game
@@ -53,19 +54,38 @@ class Game
 
   def player_move 
     p 'Choose a column (A-G). Type the letter.'
-      @board.show_board
-      @player.input = gets.strip
-      @player.valid_input?
-      input = @player.input.upcase
-      @turn.player_valid_move?(input)
-      puts "------------------------------------------------------"
+    @board.show_board
+    valid_input_check
+    valid_move_check
+    puts "------------------------------------------------------"
   end 
+
+  def valid_input_check
+    @player.input = gets.strip
+    until @player.valid_input? == true
+      @player.input = gets.strip
+    end 
+  end 
+
+  def valid_move_check
+    input = @player.input.upcase
+    until @turn.column_space_check(input) == true
+      p 'Uh-oh! That column is full. Choose another column.'
+      @player.input = gets.strip
+      input = @player.input.upcase
+    end 
+    @turn.player_valid_move?
+  end
 
   def computer_move 
     p "Computer's move"
     @board.computer.give_input
     input = @board.computer.input
-    @turn.computer_valid_move?(input)
+    until @turn.column_space_check(input) == true
+      @board.computer.give_input
+      input = @board.computer.input
+    end
+    @turn.computer_valid_move?
   end 
 
   def end_game

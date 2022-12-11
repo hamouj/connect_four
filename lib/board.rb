@@ -11,6 +11,7 @@ class Board
 
 	def create_board
 		@rows = []
+		@temp_array = []
 		@board = {
 			'A' => ['.', '.', '.', '.', '.', '.'],
 			'B' => ['.', '.', '.', '.', '.', '.'],
