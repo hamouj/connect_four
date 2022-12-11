@@ -24,9 +24,8 @@ describe Turn do
       @board.create_board
       turn = Turn.new(@board)
       input = 'B'
-      turn.player_valid_move?(input)
     
-      expect(turn.column_space_check).to be true
+      expect(turn.column_space_check(input)).to be true
     end
     
     it 'determines there is not space in the colum' do 
@@ -34,9 +33,8 @@ describe Turn do
       turn = Turn.new(@board)
       @board.board['A'] = ['X', 'X', 'X', 'O', 'O', 'X']
       input = 'A'
-      turn.player_valid_move?(input)
 
-      expect(turn.column_space_check).to be false
+      expect(turn.column_space_check(input)).to be false
     end 
   end
 
@@ -45,9 +43,10 @@ describe Turn do
       @board.create_board
       turn = Turn.new(@board)
       input = 'B'
+      turn.column_space_check(input)
 
-      expect(turn.player_valid_move?(input)).to eq('Nice move!')
-      expect(turn.computer_valid_move?(input)).to eq('End of computer turn.')
+      expect(turn.player_valid_move?).to eq('Nice move!')
+      expect(turn.computer_valid_move?).to eq('End of computer turn.')
     end
 
     it 'determines the move is invalid' do
@@ -55,9 +54,10 @@ describe Turn do
       turn = Turn.new(@board)
       @board.board['A'] = ['X', 'X', 'X', 'O', 'O', 'X']
       input = 'A'
+      turn.column_space_check(input)
 
-      expect(turn.player_valid_move?(input)).to eq('Uh-oh! That column is full. Choose another column.')
-      expect(turn.computer_valid_move?(input)).to eq('Computer chooses another column.')
+      expect(turn.player_valid_move?).to eq('Uh-oh! That column is full. Choose another column.')
+      expect(turn.computer_valid_move?).to eq('Computer chooses another column.')
     end 
   end
 
@@ -67,7 +67,8 @@ describe Turn do
       turn = Turn.new(@board)
                
       input = 'D'
-      turn.player_valid_move?(input)
+      turn.column_space_check(input)
+      turn.player_valid_move?
 
       expect(@board.board['D'][5]).to eq('X')
     end
@@ -77,7 +78,8 @@ describe Turn do
       turn = Turn.new(@board)
             
       input = 'F'
-      turn.computer_valid_move?(input)
+      turn.column_space_check(input)
+      turn.computer_valid_move?
 
       expect(@board.board['F'][5]).to eq('O')
     end
