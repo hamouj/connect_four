@@ -32,8 +32,8 @@ class Game
 
   def get_player_name
     p "Lets play! First, what is your name?"
-      @player.name = gets.strip
-      puts "------------------------------------------------------"
+    @player.name = gets.strip
+    puts "------------------------------------------------------"
   end
 
   def instructions
@@ -54,10 +54,10 @@ class Game
 
   def player_move 
     p 'Choose a column (A-G). Type the letter.'
-      @board.show_board
-      valid_input_check
-      valid_move_check
-      puts "------------------------------------------------------"
+    @board.show_board
+    valid_input_check
+    valid_move_check
+    puts "------------------------------------------------------"
   end 
 
   def valid_input_check
@@ -69,19 +69,23 @@ class Game
 
   def valid_move_check
     input = @player.input.upcase
-    @turn.player_valid_move?(input)
-    until @turn.column_space_check == true
+    until @turn.column_space_check(input) == true
+      p 'Uh-oh! That column is full. Choose another column.'
       @player.input = gets.strip
       input = @player.input.upcase
-      @turn.player_valid_move?(input)
     end 
+    @turn.player_valid_move?
   end
 
   def computer_move 
     p "Computer's move"
     @board.computer.give_input
     input = @board.computer.input
-    @turn.computer_valid_move?(input)
+    until @turn.column_space_check(input) == true
+      @board.computer.give_input
+      input = @board.computer.input
+    end
+    @turn.computer_valid_move?
   end 
 
   def end_game
