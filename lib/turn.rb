@@ -16,8 +16,6 @@ class Turn
     @input = input
     if column_space_check == false
       p 'Uh-oh! That column is full. Choose another column.'
-      board.player.input
-      return 'Uh-oh! That column is full. Choose another column.'
     else
       player_place_piece
     end     
