@@ -55,14 +55,27 @@ class Game
   def player_move 
     p 'Choose a column (A-G). Type the letter.'
       @board.show_board
-      @player.input = gets.strip
-      until @player.valid_input? == true
-      @player.input = gets.strip
-      end 
-      input = @player.input.upcase
-      @turn.player_valid_move?(input)
+      valid_input_check
+      valid_move_check
       puts "------------------------------------------------------"
   end 
+
+  def valid_input_check
+    @player.input = gets.strip
+    until @player.valid_input? == true
+      @player.input = gets.strip
+    end 
+  end 
+
+  def valid_move_check
+    input = @player.input.upcase
+    @turn.player_valid_move?(input)
+    until @turn.column_space_check == true
+      @player.input = gets.strip
+      input = @player.input.upcase
+      @turn.player_valid_move?(input)
+    end 
+  end
 
   def computer_move 
     p "Computer's move"
