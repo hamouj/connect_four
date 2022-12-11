@@ -18,6 +18,27 @@ describe Turn do
       expect(turn).to be_a(Turn)
     end
   end
+  
+  describe '#column_space_check' do
+    it 'determines there is space in the column' do
+      @board.create_board
+      turn = Turn.new(@board)
+      input = 'B'
+      turn.player_valid_move?(input)
+    
+      expect(turn.column_space_check).to be true
+    end
+    
+    it 'determines there is not space in the colum' do 
+      @board.create_board
+      turn = Turn.new(@board)
+      @board.board['A'] = ['X', 'X', 'X', 'O', 'O', 'X']
+      input = 'A'
+      turn.player_valid_move?(input)
+
+      expect(turn.column_space_check).to be false
+    end 
+  end
 
   describe '#valid_move?' do
     it 'determines the move is valid' do
