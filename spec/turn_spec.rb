@@ -57,7 +57,7 @@ describe Turn do
       input = 'A'
 
       expect(turn.player_valid_move?(input)).to eq('Uh-oh! That column is full. Choose another column.')
-      expect(turn.computer_valid_move?(input)).not_to be('A')
+      expect(turn.computer_valid_move?(input)).to eq('Computer chooses another column.')
     end 
   end
 

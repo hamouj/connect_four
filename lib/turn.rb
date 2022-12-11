@@ -1,13 +1,14 @@
 class Turn
-  attr_reader :board, :input
+  attr_reader :board, :input, :space_check
 
   def initialize (board)
     @board = board
     @input = nil
+    @space_check = nil
   end
 
   def column_space_check
-    board.board[@input].any? do |column|
+    @space_check = board.board[@input].any? do |column|
       column.include?('.')
     end
   end
@@ -15,7 +16,7 @@ class Turn
   def player_valid_move?(input)
     @input = input
     if column_space_check == false
-      p 'Uh-oh! That column is full. Choose another column.'
+      return 'Uh-oh! That column is full. Choose another column.'
     else
       player_place_piece
     end     
@@ -24,7 +25,7 @@ class Turn
   def computer_valid_move?(input)
     @input = input
     if column_space_check == false
-      board.computer.give_input
+      return 'Computer chooses another column.'
     else
       computer_place_piece
     end     
