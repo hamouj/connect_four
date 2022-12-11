@@ -6,7 +6,6 @@ describe Player do
 		it 'is an instance of Player' do
 			player1 = Player.new('Koa')
 		end
-	
 
 		it 'has a default piece "X"' do
 			player1 = Player.new('Koa')
