@@ -37,7 +37,8 @@ class Game
   end
 
   def instructions
-    p "#{@player.name}, you will be assigned the piece 'X'. Good luck!"
+    p "#{@player.name}, you will be assigned the piece 'X'."
+    p "At any point in time, type 'exit' to exit the game. Good luck!"
     puts "------------------------------------------------------"
     @board.create_board
     play_game
@@ -55,7 +56,9 @@ class Game
     p 'Choose a column (A-G). Type the letter.'
       @board.show_board
       @player.input = gets.strip
-      @player.valid_input?
+      until @player.valid_input? == true
+      @player.input = gets.strip
+      end 
       input = @player.input.upcase
       @turn.player_valid_move?(input)
       puts "------------------------------------------------------"
