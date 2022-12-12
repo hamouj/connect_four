@@ -8,6 +8,7 @@ class Turn
 
   def column_space_check(input)
     @input = input
+		exit if @input.upcase == 'EXIT'
     board.board[@input].any? do |column|
       column.include?('.')
     end
