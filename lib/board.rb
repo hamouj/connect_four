@@ -1,10 +1,13 @@
 class Board
-	attr_accessor :board
+	attr_accessor :board,
+                :l_block_index,
+                :r_block_index 
 	attr_reader :computer, 
               :player, 
               :rows,
               :column_block,
-              :column_win
+              :column_win,
+              :all_arrays
 
 	def initialize(player, computer)
 		@player = player	
@@ -13,6 +16,17 @@ class Board
 		@temp_array = []
     @column_block = []
     @column_win = []
+    @all_arrays = []
+    @l_block_index = nil
+    @r_block_index = nil 
+    @d_set_1 = [0, 2, 8]
+    @d_set_2 = [1, 3, 5]
+    @d_set_3 = [7, 10, 11]
+    @d_set_4 = [4, 9]
+    @r_set_1 = [0, 4, 8, 12, 16, 20]
+    @r_set_2 = [1, 5, 9, 13, 17, 21]
+    @r_set_3 = [2, 6, 10, 14, 18, 22]
+    @r_set_4 = [3, 7, 11, 15, 19, 23]
 	end
 
 	def create_board
@@ -167,4 +181,109 @@ class Board
     end 
     computer.input = @column_win.first if !@column_win.empty?
   end
+
+  def groups_of_four
+    @rows.shift(6)
+    n = 0
+    @rows.reverse.map {|n| n.each_cons(4) {|element| @all_arrays.push(element)}}
+    @all_arrays.concat(@temp_array.first(24))
+  end 
+
+  def left_block_check
+    @all_arrays.find {|section| @l_block_index = @all_arrays.index(section) if section == ['.', 'X', 'X', 'X']}
+    if (0..23).include?(@l_block_index)
+      row_l_block
+    elsif (24..36).include?(@l_block_index)
+      d_l_block
+    elsif (36..47).include?(@l_block_index)
+      rd_l_block
+    end 
+  end 
+  
+  def row_l_block
+    if (@r_set_1).include?(@l_block_index)
+      computer.input = 'A'
+    elsif (@r_set_2).include?(@l_block_index)
+      computer.input = 'B'
+    elsif (@r_set_3).include?(@l_block_index)
+      computer.input = 'C'
+    elsif (@r_set_4).include?(@l_block_index)
+      computer.input = 'D'
+    end 
+  end
+
+  def d_l_block
+    d_l_block = (@l_block_index) - 24
+    if @d_set_1.include?(d_l_block)
+      computer.input = 'A'
+    elsif @d_set_2.include?(d_l_block)
+      computer.input = 'B'
+    elsif @d_set_3.include?(d_l_block)
+      computer.input = 'D'
+    elsif @d_set_4.include?(d_l_block) || d_l_block == 6
+      computer.input = 'C'
+    end 
+  end 
+
+  def rd_l_block
+    rd_l_block = (@l_block_index) - 36
+    if @d_set_1.include?(rd_l_block)
+      computer.input = 'A'
+    elsif @d_set_2.include?(rd_l_block)
+      computer.input = 'B'
+    elsif @d_set_3.include?(rd_l_block)
+      computer.input = 'D'
+    elsif @d_set_4.include?(rd_l_block) || rd_l_block == 6
+      computer.input = 'C'
+    end 
+  end 
+
+  def right_block_check
+    @all_arrays.find {|section| @r_block_index = all_arrays.index(section) if section == ['X', 'X', 'X', '.']}
+    if (0..23).include?(@r_block_index)
+      row_r_block
+    elsif (24..35).include?(@r_block_index)
+      d_r_block
+    elsif (36..47).include?(@r_block_index)
+      rd_r_block
+    end 
+  end 
+
+  def row_r_block
+    if (@r_set_1).include?(@r_block_index)
+      computer.input = 'D'
+    elsif (@r_set_2).include?(@r_block_index)
+      computer.input = 'E'
+    elsif (@r_set_3).include?(@r_block_index)
+      computer.input = 'F'
+    elsif (@r_set_4).include?(@r_block_index)
+      computer.input = 'G'
+    end 
+  end
+
+  def d_r_block
+    d_r_block = (@r_block_index) - 24
+    if @d_set_1.include?(d_r_block)
+      computer.input = 'D'
+    elsif @d_set_2.include?(d_r_block)
+      computer.input = 'E'
+    elsif @d_set_3.include?(d_r_block) || d_r_block == 6
+      computer.input = 'G'
+    elsif @d_set_4.include?(d_r_block)
+      computer.input = 'F'
+    end 
+  end 
+
+  def rd_r_block
+    rd_r_block = (@r_block_index) - 36
+    if @d_set_1.include?(rd_r_block)
+      computer.input = 'D'
+    elsif @d_set_2.include?(rd_r_block)
+      computer.input = 'E'
+    elsif @d_set_3.include?(rd_r_block)
+      computer.input = 'G'
+    elsif @d_set_4.include?(rd_r_block) | rd_r_block == 6
+      computer.input = 'F'
+    end 
+  end 
 end
