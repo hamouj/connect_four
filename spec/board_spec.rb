@@ -304,5 +304,65 @@ describe Board do
       board.computer_column_win
       expect(board.computer.input).to eq('B')
     end
+
+    it 'checks rows for a block' do
+      board.board = {
+				'A' => ['.', '.', '.', '.', '.', 'X'],
+				'B' => ['.', '.', '.', '.', '.', 'O'],
+				'C' => ['.', '.', '.', 'O', 'X', 'O'],
+				'D' => ['.', '.', '.', 'X', 'O', 'X'],
+				'E' => ['.', '.', '.', 'X', 'X', 'O'],
+				'F' => ['.', '.', '.', 'X', 'O', 'O'],
+				'G' => ['.', '.', '.', '.', 'X', 'x']
+			}
+
+      board.show_board
+      board.show_board
+      board.winner
+      board.groups_of_four
+      board.left_block_check
+      board.right_block_check
+      expect(board.computer.input).to eq('G')
+    end
+
+    it 'checks diagonals for a block' do
+      board.board = {
+				'A' => ['.', '.', '.', '.', '.', 'X'],
+				'B' => ['.', '.', '.', '.', 'O', 'O'],
+				'C' => ['.', '.', 'X', 'O', 'O', 'O'],
+				'D' => ['.', '.', '.', 'X', 'O', 'X'],
+				'E' => ['.', '.', '.', 'X', 'X', 'O'],
+				'F' => ['.', '.', '.', '.', '.', 'O'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+
+      board.show_board
+      board.show_board
+      board.winner
+      board.groups_of_four
+      board.left_block_check
+      board.right_block_check
+      expect(board.computer.input).to eq('B')
+    end
+
+    it 'checks reverse diagonals for a block' do
+      board.board = {
+				'A' => ['.', '.', '.', '.', '.', 'X'],
+				'B' => ['.', '.', '.', '.', 'X', 'O'],
+				'C' => ['.', '.', '.', 'X', 'O', 'O'],
+				'D' => ['.', '.', '.', 'X', 'O', 'O'],
+				'E' => ['.', '.', '.', '.', 'X', '.'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+
+      board.show_board
+      board.show_board
+      board.winner
+      board.groups_of_four
+      board.left_block_check
+      board.right_block_check
+      expect(board.computer.input).to eq('D')
+    end 
   end
 end
