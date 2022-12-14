@@ -7,6 +7,7 @@ class Board
 	attr_reader :computer, 
               :player, 
               :rows,
+              :temp_array,
               :column_block,
               :column_win,
               :all_arrays
