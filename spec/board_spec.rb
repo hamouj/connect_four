@@ -271,4 +271,38 @@ describe Board do
 			expect(board.winner).to eq(computer)
 		end
 	end
+
+  describe 'Intelligent Computer' do
+    it 'checks columns for a block' do
+      board.board = {
+				'A' => ['.', '.', '.', '.', '.', 'X'],
+				'B' => ['.', '.', '.', '.', 'O', 'O'],
+				'C' => ['.', 'X', 'X', 'X', 'O', 'O'],
+				'D' => ['.', '.', '.', '.', 'O', 'X'],
+				'E' => ['.', '.', '.', '.', 'O', 'O'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+
+      board.show_board
+      board.computer_column_block
+      expect(board.computer.input).to eq('C')
+    end
+
+    it 'checks columns for a win' do
+      board.board = {
+				'A' => ['.', '.', '.', '.', '.', 'X'],
+				'B' => ['.', '.', '.', 'O', 'O', 'O'],
+				'C' => ['.', 'X', 'X', 'X', 'O', 'O'],
+				'D' => ['.', '.', '.', '.', 'O', 'X'],
+				'E' => ['.', '.', '.', '.', 'O', 'O'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+
+      board.show_board
+      board.computer_column_win
+      expect(board.computer.input).to eq('B')
+    end
+  end
 end
