@@ -19,8 +19,6 @@ class Player
 		else
 			p 'Typo? It happens to the best of us!'
 			p 'Type the letter of the column you would like to play (A-G).'
-      player_input = gets.strip 
-      return 'Type the letter of the column you would like to play (A-G).'
 		end
 	end
 end
