@@ -84,4 +84,172 @@ describe Turn do
       expect(@board.board['F'][5]).to eq('O')
     end
   end
+
+  describe 'Intelligent Computer' do
+    it 'blocks a column win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', '.', 'X'],
+				'B' => ['.', '.', '.', 'O', '.', 'O'],
+				'C' => ['.', 'X', 'X', 'X', 'O', 'O'],
+				'D' => ['.', '.', '.', '.', 'X', 'X'],
+				'E' => ['.', '.', '.', '.', 'O', 'O'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      turn.intelligent_computer_move
+      
+      expect(@board.computer.input).to eq('C')
+    end
+
+    it 'blocks a row win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', '.', 'X'],
+				'B' => ['.', '.', '.', 'O', 'X', 'O'],
+				'C' => ['.', '.', '.', '.', 'X', 'O'],
+				'D' => ['.', '.', '.', 'O', 'X', 'X'],
+				'E' => ['.', '.', '.', 'X', 'O', 'O'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      @board.groups_of_four
+      turn.intelligent_computer_move
+
+      expect(@board.computer.input).to eq('A')
+    end
+
+    it 'blocks a diagonal win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', 'O', 'X'],
+				'B' => ['.', '.', '.', 'X', 'O', 'O'],
+				'C' => ['.', 'O', 'X', 'X', 'X', 'O'],
+				'D' => ['.', '.', '.', 'O', 'O', 'X'],
+				'E' => ['.', '.', '.', 'X', 'O', 'X'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      @board.groups_of_four 
+      turn.intelligent_computer_move
+
+      expect(@board.computer.input).to eq('A')
+    end 
+
+    it 'blocks a reverse diagonal win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', 'O', 'X'],
+				'B' => ['.', '.', '.', '.', 'O', 'X'],
+				'C' => ['.', '.', '.', '.', 'X', 'O'],
+				'D' => ['.', '.', '.', 'X', 'O', 'X'],
+				'E' => ['.', '.', '.', 'X', 'O', 'X'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      @board.groups_of_four
+      turn.intelligent_computer_move
+
+      expect(@board.computer.input).to eq('E')
+    end 
+
+    it 'places a piece for a column win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', 'O', 'X'],
+				'B' => ['.', '.', '.', 'X', 'X', 'X'],
+				'C' => ['.', 'O', 'O', 'O', 'X', 'O'],
+				'D' => ['.', '.', '.', 'O', 'X', 'X'],
+				'E' => ['.', '.', '.', '.', '.', 'X'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      turn.intelligent_computer_move
+
+      expect(@board.computer.input).to eq('C')
+    end
+
+    it 'places a piece for a row win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', 'O', 'X'],
+				'B' => ['.', '.', '.', 'X', 'O', 'X'],
+				'C' => ['.', '.', 'O', 'O', 'X', 'O'],
+				'D' => ['.', '.', '.', 'O', 'X', 'X'],
+				'E' => ['.', '.', '.', 'O', 'X', 'X'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      @board.groups_of_four
+      turn.intelligent_computer_move
+
+      expect(@board.computer.input).to eq('F')
+    end 
+
+    it 'places a piece for a diagonal win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', 'O', 'X'],
+				'B' => ['.', '.', '.', 'X', 'O', 'X'],
+				'C' => ['.', '.', 'O', 'O', 'X', 'O'],
+				'D' => ['.', '.', '.', 'O', 'O', 'X'],
+				'E' => ['.', '.', '.', '.', 'X', 'O'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      @board.groups_of_four
+      turn.intelligent_computer_move
+
+      expect(@board.computer.input).to eq('B')
+    end 
+
+    it 'places a piece for a reverse diagonal win' do
+      turn = Turn.new(@board)
+      @board.board = {
+				'A' => ['.', '.', '.', '.', 'O', 'X'],
+				'B' => ['.', '.', '.', '.', 'O', 'X'],
+				'C' => ['.', '.', '.', '.', 'X', 'O'],
+				'D' => ['.', '.', '.', 'X', 'O', 'X'],
+				'E' => ['.', '.', '.', '.', 'X', 'O'],
+				'F' => ['.', '.', '.', '.', '.', '.'],
+				'G' => ['.', '.', '.', '.', '.', '.']
+			}
+    
+      @board.show_board
+      @board.show_board
+      @board.winner
+      @board.groups_of_four
+      turn.intelligent_computer_move
+
+      expect(@board.computer.input).to eq('E')
+    end 
+  end
 end
