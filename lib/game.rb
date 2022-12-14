@@ -45,9 +45,12 @@ class Game
   end
 
   def play_game
-    until @board.winner == @computer || @board.winner == @player || @board.full? == true
+    game_winner = @board.winner
+    until game_winner == @computer || game_winner == @player || @board.full? == true
+      @board.rows.clear
       player_move
       computer_move
+      game_winner = @board.winner
     end
     end_game
   end
@@ -79,7 +82,8 @@ class Game
 
   def computer_move 
     p "Computer's move"
-    @board.computer.give_input
+    @board.groups_of_four
+    @turn.intelligent_computer_move
     input = @board.computer.input
     until @turn.column_space_check(input) == true
       @board.computer.give_input
@@ -96,7 +100,22 @@ class Game
     elsif @board.full? == true
       p "Draw!"
     end 
+    clear_all
     play_again
+  end 
+
+  def clear_all
+    @turn.computer_win.clear
+    @turn.computer_block.clear
+    @board.all_arrays.clear
+    @board.column_block.clear
+    @board.column_win.clear
+    @board.rows.clear
+    @board.temp_array.clear
+    @board.l_block_index = nil
+    @board.r_block_index = nil
+    @board.l_win_index = nil
+    @board.r_win_index = nil 
   end 
 
   def play_again
