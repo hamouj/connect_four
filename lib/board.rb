@@ -1,12 +1,19 @@
 class Board
 	attr_accessor :board
-	attr_reader :computer, :player, :rows
+	attr_reader :computer, 
+              :player, 
+              :rows,
+              :column_block,
+              :column_win
+              
 
 	def initialize(player, computer)
 		@player = player	
 		@rows = []
 		@computer = computer
 		@temp_array = []
+    @column_block = []
+    @column_win = []
 	end
 
 	def create_board
@@ -143,4 +150,23 @@ class Board
 		game_winner.compact!
 		return game_winner[0]
 	end
+
+  # Start of intelligent computer
+  def computer_column_block
+    board.each do |key, value|
+      board[key].each_cons(4) do |element|
+        @column_block << key if element == ['.','X', 'X', 'X']
+      end
+    end 
+    computer.input = @column_block.first if !@column_block.empty?
+  end
+
+  def computer_column_win
+    board.each do |key, value|
+      board[key].each_cons(4) do |element|
+        @column_win << key if element == ['.','O', 'O', 'O']
+      end
+    end 
+    computer.input = @column_win.first if !@column_win.empty?
+  end
 end
