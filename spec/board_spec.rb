@@ -8,9 +8,7 @@ describe Board do
 	let(:player) {Player.new('Koa')}
 	let(:board) {Board.new(player, computer)}
 
-
 	describe 'initialize' do
-
 		it 'is an instance of Board' do
 				
 			expect(board).to be_a(Board)
